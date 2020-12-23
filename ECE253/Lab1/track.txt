@@ -1,0 +1,9 @@
+This tester checks if you have named your files correctly for submission.
+#######################Part1###########################
+found part1.circ
+#######################Part2###########################
+found part2.circ
+#######################Part3###########################
+found part3.circ
+#######################Part4###########################
+found part4.circ

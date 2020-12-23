@@ -1,0 +1,3 @@
+LDR R0, =0xFF200000 //leds
+LDR R1, =0xFFFEC600 //timer
+// keys= 0xff20 0050
