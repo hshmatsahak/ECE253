@@ -1,0 +1,33 @@
+.text
+.global _start
+_start:
+LDR R0, =0xFFFEC600 //Timer
+LDR R1, =0xFF200020 //Hex
+LDR R2, =200000000
+STR R2, [R0]
+MOV R2, #0b11
+STR R2, [R0, #8]
+MOV R2, #0b0111111
+LOOP:
+	STR R2, [R1]
+WAIT:
+	LDR R3, [R0, #12]
+	CMP R3, #0
+	BEQ WAIT
+	STR R3, [R0, #12]
+	CMP R2, #0b0111111
+	BNE ONE
+	MOV R2, #0b0000110
+	B LOOP
+ONE:
+	CMP R2, #0b0000110
+	BNE TWO
+	MOV R2, #0b1011011
+	B LOOP
+TWO:
+	MOV R2, #0b0111111
+	B LOOP
+	
+	
+	
+	

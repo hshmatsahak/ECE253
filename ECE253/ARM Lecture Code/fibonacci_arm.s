@@ -1,0 +1,34 @@
+.data
+N: .word 9 
+.text
+.global _start
+_start:
+LDR R5, =N
+LDR R1, [R5]
+LDR SP, =0xffffff0
+BL FIBONACCI
+END: B END
+FIBONACCI: 
+	PUSH {LR}
+	CMP R1, #0
+	BEQ BASECASE1
+	CMP R1, #1
+	BEQ BASECASE2
+	B RECURCASE
+BASECASE1:
+	MOV R0, #0
+	POP {PC}
+BASECASE2:
+	MOV R0, #1
+	POP {PC}
+RECURCASE:
+	PUSH {R1}
+	SUB R1, R1, #1
+	BL FIBONACCI
+	POP {R1}
+	PUSH {R0}
+	SUB R1, R1, #2
+	BL FIBONACCI
+	POP {R2}
+	ADD R0, R2, R0	
+	POP {PC}
